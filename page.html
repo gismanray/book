@@ -32,6 +32,7 @@
 
     <script>
         // Configure the PDF.js worker path
+        import * as pdfjsLib from 'https://cloudflare.com';
         pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cloudflare.com';
 
         const url = 'pdf/Chapter01.pdf'; // Sample URL
