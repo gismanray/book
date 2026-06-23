@@ -1,7 +1,7 @@
 // Set the worker URL (required by PDF.js to run tasks in the background)
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cloudflare.com';
 
-const url = 'your-document.pdf'; // Path to your file
+const url = 'pdf/Chapter01.pdf'; // Path to your file
 const pageToView = 3;            // Specify the target page number
 const scale = 1.5;               // Set the zoom / sharpness level
 
