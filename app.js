@@ -1,4 +1,5 @@
 // Set the worker URL (required by PDF.js to run tasks in the background)
+import * as pdfjsLib from 'https://cloudflare.com';
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cloudflare.com';
 
 const url = 'pdf/Chapter01.pdf'; // Path to your file
