@@ -75,10 +75,10 @@
 
     function renderPage(pageNum) {
  
-      if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) {
+     /*if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) {
         alert("Invalid page number");
         return;
-      }
+      } */
 
       pdfDoc.getPage(pageNum).then(function(page) {
         const scale = 1.40;
