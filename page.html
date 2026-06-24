@@ -67,16 +67,16 @@
           //renderPage(); // Render initial page
       });
 
-      pageNum = parseInt(document.getElementById("pageNumber").value);
+      //pageNum = parseInt(document.getElementById("pageNumber").value);
+      console.log("Page number: " + pageNum);
+      console.log("pdfDoc: " + pdfDoc);
       renderPage();
     }
     
     
 
     function renderPage() {
-      //const pageNum = parseInt(document.getElementById("pageNumber").value);
-      console.log("Page number: " + pageNum);
-      console.log("pdfDoc: " + pdfDoc);
+      pageNum = parseInt(document.getElementById("pageNumber").value);
       
       if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) {
          alert("Invalid page number");
