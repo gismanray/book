@@ -66,19 +66,20 @@
           renderPage(); // Render initial page
       });
 
-      const pageNum = parseInt(document.getElementById("pageNumber").value);
-      console.log("Page number: " + pageNum);
-      renderPage(pageNum);
+      //const pageNum = parseInt(document.getElementById("pageNumber").value);
+      //console.log("Page number: " + pageNum);
+      renderPage();
     }
     
     
 
-    function renderPage(pageNum) {
- 
-     /*if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) {
-        alert("Invalid page number");
-        return;
-      } */
+   function renderPage() {
+      const pageNum = parseInt(document.getElementById("pageNumber").value);
+      console.log("Page number: " + pageNum);
+      if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) {
+         alert("Invalid page number");
+         return;
+      } 
 
       pdfDoc.getPage(pageNum).then(function(page) {
         const scale = 1.40;
