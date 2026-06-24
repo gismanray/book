@@ -46,32 +46,30 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
   </style>
-</head>
-<body>
-
-  <h1>PDF Page Viewer</h1>
-
-  <div id="controls">
-    Page:
-    <input type="number" id="pageNumber" value="1" min="1">
-    <button onclick="renderPage()">Go</button>
-  </div>
-
-  <canvas id="pdfCanvas"></canvas>
 
   <script>
-    const url = "pdf/Chapter00.pdf"; // Replace with your PDF
+    var url = null;
+    var pdfDoc = null;
+    var canvas = null;
+    var ctx = null;
 
-    let pdfDoc = null;
+    window.onload = main;
+    
+    function main() {
+      url = "pdf/Chapter00.pdf";
+      canvas = document.getElementById("pdfCanvas");
+      ctx = canvas.getContext("2d");
+      
+      // Load PDF
+      pdfjsLib.getDocument(url).promise.then(function(pdf) {
+          pdfDoc = pdf;
+          renderPage(); // Render initial page
+      });
 
-    const canvas = document.getElementById("pdfCanvas");
-    const ctx = canvas.getContext("2d");
-
-    // Load PDF
-    pdfjsLib.getDocument(url).promise.then(function(pdf) {
-      pdfDoc = pdf;
-      renderPage(); // Render initial page
-    });
+      renderPage();
+    }
+    
+    
 
     function renderPage() {
       const pageNum = parseInt(document.getElementById("pageNumber").value);
@@ -97,6 +95,18 @@
       });
     }
   </script>
+</head>
+<body>
+
+  <h1>PDF Page Viewer</h1>
+
+  <div id="controls">
+    Page:
+    <input type="number" id="pageNumber" value="1" min="1">
+    <button onclick="renderPage()">Go</button>
+  </div>
+
+  <canvas id="pdfCanvas"></canvas>
 
 </body>
 </html>
