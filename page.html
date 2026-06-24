@@ -1,85 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF.js Specific Page Viewer</title>
-    <style>
-        body { font-family: sans-serif; text-align: center; margin: 20px; background-color: #f4f4f4; }
-        #canvas-container { margin-top: 20px; display: inline-block; box-shadow: 0 4px 8px rgba(0,0,0,0.2); background: white; }
-        canvas { display: block; }
-        button { padding: 10px 20px; font-size: 16px; margin: 5px; cursor: pointer; }
-        input { width: 50px; padding: 8px; text-align: center; font-size: 16px; }
-    </style>
-    <script src="https://cloudflare.com"></script>
+  <meta charset="UTF-8">
+  <title>PDF Page Viewer</title>
+
+  <!-- PDF.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    #controls {
+      margin-bottom: 15px;
+    }
+
+    input {
+      padding: 5px;
+      font-size: 16px;
+      width: 70px;
+      text-align: center;
+    }
+
+    button {
+      padding: 6px 10px;
+      font-size: 14px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+
+    canvas {
+      border: 1px solid #ccc;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
 </head>
 <body>
 
-    <h2>PDF.js Page Viewer</h2>
-    
-    <!-- Controls -->
-    <div>
-        <input type="number" id="pageInput" value="1" min="1">
-        <button onclick="loadSpecificPage()">View Page</button>
-    </div>
+  <h1>PDF Page Viewer</h1>
 
-    <!-- Container where the specific page is rendered -->
-    <div id="canvas-container">
-        <canvas id="pdfCanvas"></canvas>
-    </div>
+  <div id="controls">
+    Page:
+    <input type="number" id="pageNumber" value="1" min="1">
+    <button onclick="renderPage()">Go</button>
+  </div>
 
-    <!-- Include PDF.js from a public CDN -->
-    <script src="https://cloudflare.com"></script>
+  <canvas id="pdfCanvas"></canvas>
 
-    <script>
-        // Configure the PDF.js worker path
-        // Access the library globally via window or directly
-        const pdfjsLib = window['pdfjs-dist/build/pdf'];
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cloudflare.com';
+  <script>
+    const url = "pdf/Chapter00.pdf"; // Replace with your PDF
 
-        const url = 'pdf/Chapter01.pdf'; // Sample URL
-        let pdfDoc = null;
-        const scale = 1.5; // Controls document zoom level
+    let pdfDoc = null;
 
-        // Initialize and load the PDF document
-        pdfjsLib.getDocument(url).promise.then(pdf => {
-            pdfDoc = pdf;
-            // Render the initial page setup in input (default: page 1)
-            renderPage(1);
-        }).catch(err => {
-            console.error("Error loading PDF: ", err);
-        });
+    const canvas = document.getElementById("pdfCanvas");
+    const ctx = canvas.getContext("2d");
 
-        // Function to render a designated single page
-        function renderPage(pageNumber) {
-            pdfDoc.getPage(pageNumber).then(page => {
-                const canvas = document.getElementById('pdfCanvas');
-                const context = canvas.getContext('2d');
-                
-                // Set layout scale dimensions
-                const viewport = page.getViewport({ scale: scale });
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
+    // Load PDF
+    pdfjsLib.getDocument(url).promise.then(function(pdf) {
+      pdfDoc = pdf;
+      renderPage(); // Render initial page
+    });
 
-                // Render the page into the canvas context
-                const renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                page.render(renderContext);
-            });
-        }
+    function renderPage() {
+      const pageNum = parseInt(document.getElementById("pageNumber").value);
 
-        // Triggered by button to fetch the user input value
-        function loadSpecificPage() {
-            const pageNum = parseInt(document.getElementById('pageInput').value);
-            if (pdfDoc && pageNum >= 1 && pageNum <= pdfDoc.numPages) {
-                renderPage(pageNum);
-            } else {
-                alert(`Please enter a valid page number between 1 and ${pdfDoc ? pdfDoc.numPages : 1}`);
-            }
-        }
-    </script>
+      if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) {
+        alert("Invalid page number");
+        return;
+      }
+
+      pdfDoc.getPage(pageNum).then(function(page) {
+        const scale = 1.40;
+        const viewport = page.getViewport({ scale: scale });
+
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+
+        page.render(renderContext);
+      });
+    }
+  </script>
 
 </body>
 </html>
