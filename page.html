@@ -63,14 +63,14 @@
       
       // Load PDF
       pdfjsLib.getDocument(url).promise.then(function(pdf) {
-          pdfDoc = pdf;
-          //renderPage(); // Render initial page
+        pdfDoc = pdf;
+        renderPage(); // Render initial page
       });
 
       //pageNum = parseInt(document.getElementById("pageNumber").value);
       console.log("Page number: " + pageNum);
       console.log("pdfDoc: " + pdfDoc);
-      renderPage();
+      //renderPage();
     }
     
     
