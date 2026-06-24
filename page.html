@@ -63,19 +63,20 @@
       // Load PDF
       pdfjsLib.getDocument(url).promise.then(function(pdf) {
           pdfDoc = pdf;
-          renderPage(); // Render initial page
+          //renderPage(); // Render initial page
       });
 
-      //const pageNum = parseInt(document.getElementById("pageNumber").value);
-      //console.log("Page number: " + pageNum);
-      renderPage();
+      const pageNum = parseInt(document.getElementById("pageNumber").value);
+      renderPage(pageNum);
     }
     
     
 
-   function renderPage() {
-      const pageNum = parseInt(document.getElementById("pageNumber").value);
+    function renderPage(pageNum) {
+      //const pageNum = parseInt(document.getElementById("pageNumber").value);
       console.log("Page number: " + pageNum);
+      console.log("pdfDoc: " + pdfDoc);
+      
       if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) {
          alert("Invalid page number");
          return;
