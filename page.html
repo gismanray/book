@@ -97,13 +97,13 @@
     function prevPage() {
       if (pageNum > 1) {
         pageNum--;
-        document.getElementById('pnum').value(pageNum);
+        document.getElementById('pnum').value = pageNum;
       }
     }
     function nextPage() {
       if (pageNum < pdfDoc.numPages) {
         pageNum++;
-        document.getElementById('pnum').value(pageNum);
+        document.getElementById('pnum').value = pageNum;
       }
     }
   </script>
