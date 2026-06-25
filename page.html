@@ -98,12 +98,14 @@
       if (pageNum > 1) {
         pageNum--;
         document.getElementById('pnum').value = pageNum;
+        renderPage();
       }
     }
     function nextPage() {
       if (pageNum < pdfDoc.numPages) {
         pageNum++;
         document.getElementById('pnum').value = pageNum;
+        renderPage();
       }
     }
   </script>
@@ -116,7 +118,7 @@
     <button id="btnL">&lt;</button>
     <input type="text" id="pnum" value="1" style="width:40px; text-align:center;">
     <button id="btnR">&gt;</button>
-    <button onclick="renderPage()">Go</button>
+    <!--<button onclick="renderPage()">Go</button>-->
   </div>
 
   <canvas id="pdfCanvas"></canvas>
