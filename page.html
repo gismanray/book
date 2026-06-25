@@ -60,24 +60,17 @@
       url = "pdf/Chapter00.pdf";
       canvas = document.getElementById("pdfCanvas");
       ctx = canvas.getContext("2d");
-      
+            
       // Load PDF
       pdfjsLib.getDocument(url).promise.then(function(pdf) {
         pdfDoc = pdf;
-        //renderPage(); // Render initial page
+        renderPage(); // Render initial page
       });
 
-      //pageNum = parseInt(document.getElementById("pageNumber").value);
-      console.log("Page number: " + pageNum);
-      console.log("pdfDoc: " + pdfDoc);
-      renderPage();
     }
-    
-    
 
     function renderPage() {
       pageNum = parseInt(document.getElementById("pageNumber").value);
-      
       if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) {
          alert("Invalid page number");
          return;
