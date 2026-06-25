@@ -57,7 +57,7 @@
     window.onload = main;
     
     function main() {
-      url = "pdf/Chapter00.pdf";
+      url = "pdf/Chapter01.pdf";
       canvas = document.getElementById("pdfCanvas");
       ctx = canvas.getContext("2d");
       
@@ -69,6 +69,7 @@
 
       document.getElementById('btnL').addEventListener("click", prevPage);
       document.getElementById('btnR').addEventListener("click", nextPage);
+      document.getElementById('pnum').addEventListener("keydone", gotoPage);
     }
 
     function renderPage() {
@@ -101,12 +102,23 @@
         renderPage();
       }
     }
+    
     function nextPage() {
       if (pageNum < pdfDoc.numPages) {
         pageNum++;
         document.getElementById('pnum').value = pageNum;
         renderPage();
       }
+    }
+    
+    function gotoPage(e) {
+      if (e.key != 'Enter') return;
+      const snum = document.getElementById('pnum').value;
+      if (isNaN(parseInt(snum)) {
+        alert("Invalid page number");
+        return;
+      }
+      if (parseInt(snum) != pageNum) renderPage();
     }
   </script>
 </head>
