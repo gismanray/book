@@ -70,7 +70,8 @@
     }
 
     function renderPage() {
-      pageNum = parseInt(document.getElementById("pageNumber").value);
+      // pageNum = parseInt(document.getElementById("pageNumber").value);
+      pageNum = parseInt(document.getElementById("pnum").value);
       if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) {
          alert("Invalid page number");
          return;
@@ -99,7 +100,7 @@
     <!--Page:
     <input type="number" id="pageNumber" value="1" min="1">-->
     <button id="btnL">&lt;</button>
-    <input type="text" id="pnum" value="1" style="text-align:center;">
+    <input type="text" id="pnum" value="1" style="width:40px; text-align:center;">
     <button id="btnR">&gt;</button>
     <button onclick="renderPage()">Go</button>
   </div>
