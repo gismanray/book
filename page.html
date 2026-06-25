@@ -94,12 +94,13 @@
   </script>
 </head>
 <body>
-
-  <h1>PDF Page Viewer</h1>
-
+  
   <div id="controls">
-    Page:
-    <input type="number" id="pageNumber" value="1" min="1">
+    <!--Page:
+    <input type="number" id="pageNumber" value="1" min="1">-->
+    <button id="btnL">&lt;</button>
+    <input type="text" id="pnum" value="1" style="text-align:center;">
+    <button id="btnR">&gt;</button>
     <button onclick="renderPage()">Go</button>
   </div>
 
