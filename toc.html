@@ -3,8 +3,8 @@
 <title>Programming for ArcGIS Desktop Add-Ins</title>
 <style type="text/css">
 p {font-family:arial; font-size:10pt; margin:3pt; text-align:left;}
-.box {position:absolute; left:20px; top:60px; width:500px; height:608px; overflow:auto; border:0px red solid; }
-.lnk {color:blue; text-decoration:none; cursor:pointer;}
+.box {position:absolute; left:20px; top:60px; width:450px; height:608px; overflow:auto; border:0px red solid; }
+.lnk {color:#000; text-decoration:none; cursor:pointer;}
 .lnk:hover {color:red; }
 .chpt {margin-bottom:6pt; font-weight:bold;}
 .idnt1 {margin-left:20pt;}
@@ -12,252 +12,261 @@ p {font-family:arial; font-size:10pt; margin:3pt; text-align:left;}
 .idnt3 {margin-left:60pt;}
 </style>
 <script type="text/javascript">
-function opench(ch, p=1) {
-	ch = ("0"+ch).slice(-2);
-	var page = parent.document.getElementById("page");
-	page.src = "pdf/Chapter"+ch+".pdf#toolbar=0&page="+p;
-	page.location.href.reload();
-}
+	window.onload = main;
+	window.onresize = resizewin;
+	
+	function main() {
+		resizewin();
+	}
+	
+	function resizewin() {
+		document.getElementById('box').style.height = (window.innerHeight-65) + "px";
+	}
+		
+	function openPage(ch, p=1) {
+		parent.frames['frame2'].location.href = "page.html?chpt="+ch+"&page="+p;
+	}
 
 </script>
 </head>
 <body oncontextmenu="return false">
 
 <p style="position:absolute; left:20px; top:15px; font-size:15pt; font-weight:bold;">Contents</p>
-<div class="box">
-<p class="chpt lnk" onclick="opench(0)">Introduction</p><br>
-<p class="chpt lnk" onclick="opench(1)">Chapter 1: Getting Started with Visual Basic .NET</p>
-<p class="idnt1">1.	Computer and programming</p>
-<p class="idnt2">1.1 Computer hardware</p>
-<p class="idnt2">1.2 Computer software</p>
-<p class="idnt2">1.3 How to write programs</p>
-<p class="idnt1">2.	Visual Basic .NET</p>
-<p class="idnt1">3.	Starting up VB.NET</p>
-<p class="idnt1">4.	Controls, properties, and events</p>
-<p class="idnt2">4.1 Control properties</p>
-<p class="idnt2">4.2 Control events</p>
-<p class="idnt2">4.3 Setting property values by code</p>
-<p class="idnt1">5.	Simple Windows Applications</p>
-<p class="idnt1">6.	Understanding files of a VB.NET project</p>
+<div id="box" class="box">
+<p class="chpt lnk" onclick="openPage(0)">Introduction</p><br>
+<p class="chpt lnk" onclick="openPage(1,1)">Chapter 1: Getting Started with Visual Basic .NET</p>
+<p class="idnt1 lnk" onclick="openPage(1,1)">1. Computer and programming</p>
+<p class="idnt2 lnk" onclick="openPage(1,1)">1.1 Computer hardware</p>
+<p class="idnt2 lnk" onclick="openPage(1,1)">1.2 Computer software</p>
+<p class="idnt2 lnk" onclick="openPage(1,3)">1.3 How to write programs</p>
+<p class="idnt1 lnk" onclick="openPage(1,4)">2. Visual Basic .NET</p>
+<p class="idnt1 lnk" onclick="openPage(1,5)">3.	Starting up VB.NET</p>
+<p class="idnt1 lnk" onclick="openPage(1,9)">4.	Controls, properties, and events</p>
+<p class="idnt2 lnk" onclick="openPage(1,10)">4.1 Control properties</p>
+<p class="idnt2 lnk" onclick="openPage(1,12)">4.2 Control events</p>
+<p class="idnt2 lnk" onclick="openPage(1,15)">4.3 Setting property values by code</p>
+<p class="idnt1 lnk" onclick="openPage(1,17)">5.	Simple Windows Applications</p>
+<p class="idnt1 lnk" onclick="openPage(1,20)">6.	Understanding files of a VB.NET project</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(2)">Chapter 2: VB.NET Variables and Data Types</p>
-<p class="idnt1">1. Variables</p>
-<p class="idnt1">2. Data types</p>
-<p class="idnt1">3. Arithmetic operations</p>
-<p class="idnt2">3.1 Operators</p>
-<p class="idnt2">3.2 Incrementation</p>
-<p class="idnt2">3.3 Associativity</p>
-<p class="idnt1">4. Built-in math functions</p>
-<p class="idnt1">5. Strings</p>
-<p class="idnt2">5.1 String variables and string values</p>
-<p class="idnt2">5.2 String concatenation</p>
-<p class="idnt2">5.3 Using text boxes for input and output</p>
-<p class="idnt2">5.4 Conversion between strings and numbers</p>
-<p class="idnt2">5.5 String properties and methods</p>
-<p class="idnt1">6. Three types of errors</p>
-<p class="idnt1">7. Additional techniques</p>
-<p class="idnt2">7.1 Message box</p>
-<p class="idnt2">7.2 Comments</p>
-<p class="idnt2">7.3 Code line breaking (Line continuation)</p>
+<p class="chpt lnk" onclick="openPage(2)">Chapter 2: VB.NET Variables and Data Types</p>
+<p class="idnt1 lnk" onclick="openPage(2,1)">1. Variables</p>
+<p class="idnt1 lnk" onclick="openPage(2,3)">2. Data types</p>
+<p class="idnt1 lnk" onclick="openPage(2,4)">3. Arithmetic operations</p>
+<p class="idnt2 lnk" onclick="openPage(2,4)">3.1 Operators</p>
+<p class="idnt2 lnk" onclick="openPage(2,5)">3.2 Incrementation</p>
+<p class="idnt2 lnk" onclick="openPage(2,5)">3.3 Associativity</p>
+<p class="idnt1 lnk" onclick="openPage(2,7)">4. Built-in math functions</p>
+<p class="idnt1 lnk" onclick="openPage(2,8)">5. Strings</p>
+<p class="idnt2 lnk" onclick="openPage(2,8)">5.1 String variables and string values</p>
+<p class="idnt2 lnk" onclick="openPage(2,9)">5.2 String concatenation</p>
+<p class="idnt2 lnk" onclick="openPage(2,9)">5.3 Using text boxes for input and output</p>
+<p class="idnt2 lnk" onclick="openPage(2,10)">5.4 Conversion between strings and numbers</p>
+<p class="idnt2 lnk" onclick="openPage(2,13)">5.5 String properties and methods</p>
+<p class="idnt1 lnk" onclick="openPage(2,16)">6. Three types of errors</p>
+<p class="idnt1 lnk" onclick="openPage(2,17)">7. Additional techniques</p>
+<p class="idnt2 lnk" onclick="openPage(2,17)">7.1 Message box</p>
+<p class="idnt2 lnk" onclick="openPage(2,18)">7.2 Comments</p>
+<p class="idnt2 lnk" onclick="openPage(2,18)">7.3 Code line breaking (Line continuation)</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(3)">Chapter 3: Flow Control and Debugging</p>
-<p class="idnt1">1.	ASCII</p>
-<p class="idnt1">2.	Relational and logical operations</p>
-<p class="idnt1">3.	Decision</p>
-<p class="idnt2">3.1 If block</p>
-<p class="idnt2">3.2 Select Case block</p>
-<p class="idnt1">4.	Repetition</p>
-<p class="idnt2">4.1 For ... Next repetition</p>
-<p class="idnt2">4.2 Nested repetitions</p>
-<p class="idnt2">4.3 Do ... Loop and While ... End While</p>
-<p class="idnt1">5.	Debugging</p>
-<p class="idnt2">5.1 Breakpoint</p>
-<p class="idnt2">5.2 Stepping through a program</p>
-<p class="idnt2">5.3 Examining variable values</p>
+<p class="chpt lnk" onclick="openPage(3)">Chapter 3: Flow Control and Debugging</p>
+<p class="idnt1 lnk" onclick="openPage(3,1)">1. ASCII</p>
+<p class="idnt1 lnk" onclick="openPage(3,2)">2. Relational and logical operations</p>
+<p class="idnt1 lnk" onclick="openPage(3,3)">3. Decision</p>
+<p class="idnt2 lnk" onclick="openPage(3,3)">3.1 If block</p>
+<p class="idnt2 lnk" onclick="openPage(3,8)">3.2 Select Case block</p>
+<p class="idnt1 lnk" onclick="openPage(3,9)">4. Repetition</p>
+<p class="idnt2 lnk" onclick="openPage(3,9)">4.1 For ... Next repetition</p>
+<p class="idnt2 lnk" onclick="openPage(3,12)">4.2 Nested repetitions</p>
+<p class="idnt2 lnk" onclick="openPage(3,13)">4.3 Do ... Loop and While ... End While</p>
+<p class="idnt1 lnk" onclick="openPage(3,16)">5. Debugging</p>
+<p class="idnt2 lnk" onclick="openPage(3,17)">5.1 Breakpoint</p>
+<p class="idnt2 lnk" onclick="openPage(3,17)">5.2 Stepping through a program</p>
+<p class="idnt2 lnk" onclick="openPage(3,18)">5.3 Examining variable values</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(4)">Chapter 4: Procedures</p>
-<p class="idnt1">1.	Functions</p>
-<p class="idnt1">2.	Sub procedures</p>
-<p class="idnt1">3.	Program flow with procedure calls</p>
-<p class="idnt1">4.	Scope of variables</p>
-<p class="idnt1">5.	Passing arguments ByVal vs. ByRef</p>
-<p class="idnt2">5.1 ByVal</p>
-<p class="idnt2">5.2 ByRef</p>
+<p class="chpt lnk" onclick="openPage(4)">Chapter 4: Procedures</p>
+<p class="idnt1 lnk" onclick="openPage(4,2)">1. Functions</p>
+<p class="iden1 lnk" onclick="openPage(4,7)">2. Sub procedure</p>
+<p class="idnt1 lnk" onclick="openPage(4,8)">3. Program flow with procedure calls</p>
+<p class="idnt1 lnk" onclick="openPage(4,10)">4. Scope of variables</p>
+<p class="idnt1 lnk" onclick="openPage(4,12)">5. Passing arguments ByVal vs. ByRef</p>
+<p class="idnt2 lnk" onclick="openPage(4,12)">5.1 ByVal</p>
+<p class="idnt2 lnk" onclick="openPage(4,13)">5.2 ByRef</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(5)">Chapter 5: Arrays and Text Files</p>
-<p class="idnt1">1.	Array</p>
-<p class="idnt1">2.	Reading text files</p>
-<p class="idnt1">3.	VB.NET error handling</p>
-<p class="idnt1">4.	Open file dialog</p>
-<p class="idnt1">5.	Resizing arrays: ReDim and Preserve</p>
-<p class="idnt1">6.	Parsing strings</p>
-<p class="idnt1">7.	Stream reader and stream writer</p>
-<p class="idnt2">7.1 The StreamReader class</p>
-<p class="idnt2">7.2 The StreamWrite class</p>
+<p class="chpt lnk" onclick="openPage(5)">Chapter 5: Arrays and Text Files</p>
+<p class="idnt1 lnk" onclick="openPage(5,1)">1. Array</p>
+<p class="idnt1 lnk" onclick="openPage(5,2)">2. Reading text files</p>
+<p class="idnt1 lnk" onclick="openPage(5,4)">3. Handling errors</p>
+<p class="idnt1 lnk" onclick="openPage(5,6)">4. Open file dialog</p>
+<p class="idnt1 lnk" onclick="openPage(5,9)">5. ReDim and Preserve</p>
+<p class="idnt1 lnk" onclick="openPage(5,12)">6. The Split method of string objects</p>
+<p class="idnt1 lnk" onclick="openPage(5,15)">7. StreamReader and StreamWriter</p>
+<p class="idnt2 lnk" onclick="openPage(5,15)">7.1 StreamReader</p>
+<p class="idnt2 lnk" onclick="openPage(5,19)">7.2 StreamWrite</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(6)">Chapter 6: Object-Oriented Programming</p>
-<p class="idnt1">1.	Structure</p>
-<p class="idnt1">2.	Object-Oriented programming</p>
-<p class="idnt2">2.1 Encapsulation</p>
-<p class="idnt2">2.2 Inheritance</p>
-<p class="idnt2">2.3 Polymorphism</p>
-<p class="idnt1">3.	Class structure</p>
-<p class="idnt1">4.	Example: PointCity Project</p>
-<p class="idnt2">4.1 Creating classes and objects</p>
-<p class="idnt2">4.2 Property structure</p>
-<p class="idnt2">4.3 Inheritance</p>
-<p class="idnt2">4.4 Polymorphism</p>
-<p class="idnt1">5.	Namespace</p>
-<p class="idnt1">6.	Enumeration</p>
+<p class="chpt lnk" onclick="openPage(6)">Chapter 6: Object-Oriented Programming</p>
+<p class="idnt1 lnk" onclick="openPage(6,1)">1. Structure</p>
+<p class="idnt1 lnk" onclick="openPage(6,3)">2. Object-Oriented programming</p>
+<p class="idnt2 lnk" onclick="openPage(6,3)">2.1 Encapsulation</p>
+<p class="idnt2 lnk" onclick="openPage(6,4)">2.2 Inheritance</p>
+<p class="idnt2 lnk" onclick="openPage(6,5)">2.3 Polymorphism</p>
+<p class="idnt1 lnk" onclick="openPage(6,6)">3. Class structure</p>
+<p class="idnt1 lnk" onclick="openPage(6,7)">4. Example: PointCity Project</p>
+<p class="idnt2 lnk" onclick="openPage(6,7)">4.1 Creating classes and objects</p>
+<p class="idnt2 lnk" onclick="openPage(6,10)">4.2 Property structure</p>
+<p class="idnt2 lnk" onclick="openPage(6,12)">4.3 Inheritance</p>
+<p class="idnt2 lnk" onclick="openPage(6,13)">4.4 Polymorphism</p>
+<p class="idnt1 lnk" onclick="openPage(6,15)">5. Namespace</p>
+<p class="idnt1 lnk" onclick="openPage(6,16)">6. Enumeration</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(7)">Chapter 7: Building ArcGIS Desktop Add-Ins</p>
-<p class="idnt1">1.	ArcGIS Desktop Add-In</p>
-<p class="idnt1">2.	Creating a new ArcMap add-in project</p>
-<p class="idnt1">3.	Using the ArcGIS add-Ins wizard to create buttons and tools</p>
-<p class="idnt1">4.	Understanding the XML</p>
-<p class="idnt1">5.	Implementing functionality of the add-in button</p>
-<p class="idnt1">6.	Implementing functionality of the add-in tool</p>
-<p class="idnt1">7.	Creating a custom combo box</p>
-<p class="idnt1">8.	Creating a custom toolbar</p>
+<p class="chpt lnk" onclick="openPage(7)">Chapter 7: Building ArcGIS Desktop Add-Ins</p>
+<p class="idnt1 lnk" onclick="openPage(7,1)">1.	ArcGIS Desktop Add-In</p>
+<p class="idnt1 lnk" onclick="openPage(7,3)">2.	Creating a new ArcMap add-in project</p>
+<p class="idnt1 lnk" onclick="openPage(7,3)">3.	Using the ArcGIS add-Ins wizard to create buttons and tools</p>
+<p class="idnt1 lnk" onclick="openPage(7,7)">4.	Understanding the XML</p>
+<p class="idnt1 lnk" onclick="openPage(7,9)">5.	Implementing functionality of the add-in button</p>
+<p class="idnt1 lnk" onclick="openPage(7,12)">6.	Implementing functionality of the add-in tool</p>
+<p class="idnt1 lnk" onclick="openPage(7,14)">7.	Creating a custom combo box</p>
+<p class="idnt1 lnk" onclick="openPage(7,16)">8.	Creating a custom toolbar</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(8)">Chapter 8: Understanding Object Model Diagrams</p>
-<p class="idnt1">1.	About ArcObjects</p>
-<p class="idnt1">2.	UML for class diagrams</p>
-<p class="idnt2">2.1 Class structure</p>
-<p class="idnt2">2.2 Class relationships: association, inheritance, aggregation, and instantiation</p>
-<p class="idnt1">3.	Concepts and techniques of ArcObjects programming</p>
-<p class="idnt2">3.1 Component Object Model (COM)</p>
-<p class="idnt2">3.2 Multiple interfaces</p>
-<p class="idnt2">3.3 Query Interface (QI)</p>
-<p class="idnt2">3.4 Class types: co-class, abstract class, and regular class</p>
-<p class="idnt2">3.5 Class inheritance and interface inheritance</p>
-<p class="idnt1">4.	ArcObjects assemblies and namespaces</p>
+<p class="chpt lnk" onclick="openPage(8)">Chapter 8: Understanding Object Model Diagrams</p>
+<p class="idnt1 lnk" onclick="openPage(8,1)">1. About ArcObjects</p>
+<p class="idnt1 lnk" onclick="openPage(8,2)">2. UML for class diagrams</p>
+<p class="idnt2 lnk" onclick="openPage(8,3)">2.1 Class structure</p>
+<p class="idnt2 lnk" onclick="openPage(8,3)">2.2 Class relationships: association, inheritance, aggregation, and instantiation</p>
+<p class="idnt1 lnk" onclick="openPage(8,5)">3. Concepts and techniques of ArcObjects programming</p>
+<p class="idnt2 lnk" onclick="openPage(8,5)">3.1 Component Object Model (COM)</p>
+<p class="idnt2 lnk" onclick="openPage(8,6)">3.2 Multiple interfaces</p>
+<p class="idnt2 lnk" onclick="openPage(8,7)">3.3 Query Interface (QI)</p>
+<p class="idnt2 lnk" onclick="openPage(8,9)">3.4 Class types: co-class, abstract class, and regular class</p>
+<p class="idnt2 lnk" onclick="openPage(8,12)">3.5 Class inheritance and interface inheritance</p>
+<p class="idnt1 lnk" onclick="openPage(8,13)">4. ArcObjects assemblies and namespaces</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(9)">Chapter 9: Accessing Map Layers</p>
-<p class="idnt1">1.	Application and MxDocument</p>
-<p class="idnt1">2.	The Carto Assembly</p>
-<p class="idnt1">3.	Turning off of a layer</p>
-<p class="idnt1">4.	Importing Namespaces</p>
-<p class="idnt1">5.	Turning on/off all layers</p>
-<p class="idnt1">6.	Changing map scales</p>
-<p class="idnt1">7.	Obtaining coordinates of mouse location</p>
+<p class="chpt lnk" onclick="openPage(9)">Chapter 9: Accessing Map Layers</p>
+<p class="idnt1 lnk" onclick="openPage(9,1)">1. Application and MxDocument</p>
+<p class="idnt1 lnk" onclick="openPage(9,4)">2. The Carto Assembly</p>
+<p class="idnt1 lnk" onclick="openPage(9,7)">3. Turning off of a layer</p>
+<p class="idnt1 lnk" onclick="openPage(9,8)">4. Importing Namespaces</p>
+<p class="idnt1 lnk" onclick="openPage(9,8)">5. Turning on/off all layers</p>
+<p class="idnt1 lnk" onclick="openPage(9,10)">6. Changing map scales</p>
+<p class="idnt1 lnk" onclick="openPage(9,11)">7. Obtaining coordinates of mouse location</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(10)">Chapter 10: Loading Layers and Rendering Feature Layers</p>
-<p class="idnt1">1.	Loading Feature Layers</p>
-<p class="idnt2">1.1 Model diagram analysis and solution development</p>
-<p class="idnt2">1.2 Creating an add-in button</p>
-<p class="idnt2">1.3 Implementing the load layer button</p>
-<p class="idnt2">1.4 Enhancement</p>
-<p class="idnt1">2.	Loading raster layers</p>
-<p class="idnt2">2.1 Object model diagram analysis and solution development</p>
-<p class="idnt2">2.2 Creating a function to load raster layers</p>
-<p class="idnt1">3.	Rendering feature layers</p>
-<p class="idnt2">3.1 Model diagram analysis and solution development</p>
-<p class="idnt2">3.2 Creating a simple fill renderer</p>
+<p class="chpt lnk" onclick="openPage(10)">Chapter 10: Loading Layers and Rendering Feature Layers</p>
+<p class="idnt1 lnk" onclick="openPage(10,1)">1. Loading Feature Layers</p>
+<p class="idnt2 lnk" onclick="openPage(10,1)">1.1 Model diagram analysis and solution development</p>
+<p class="idnt2 lnk" onclick="openPage(10,5)">1.2 Creating an add-in button</p>
+<p class="idnt2 lnk" onclick="openPage(10,5)">1.3 Implementing the load layer button</p>
+<p class="idnt2 lnk" onclick="openPage(10,7)">1.4 Enhancement</p>
+<p class="idnt1 lnk" onclick="openPage(10,9)">2. Loading raster layers</p>
+<p class="idnt2 lnk" onclick="openPage(10,9)">2.1 Object model diagram analysis and solution development</p>
+<p class="idnt2 lnk" onclick="openPage(10,10)">2.2 Creating a function to load raster layers</p>
+<p class="idnt1 lnk" onclick="openPage(10,12)">3. Rendering feature layers</p>
+<p class="idnt2 lnk" onclick="openPage(10,12)">3.1 Model diagram analysis and solution development</p>
+<p class="idnt2 lnk" onclick="openPage(10,14)">3.2 Creating a simple fill renderer</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(11)">Chapter 11: Manipulating Elements and Geometry</p>
-<p class="idnt1">1.	Creating marker elements</p>
-<p class="idnt2">1.1 Model diagram analysis and solution development</p>
-<p class="idnt2">1.2 Implementing the bus stop tool</p>
-<p class="idnt1">2.	Creating line elements</p>
-<p class="idnt2">2.1 Object model diagram analysis and solution development</p>
-<p class="idnt2">2.2 Implementing the bus route creation tool</p>
-<p class="idnt1">3.	Displaying GPS data as line elements</p>
-<p class="idnt2">3.1 Creating an add-in dockable window</p>
-<p class="idnt2">3.2 Creating polyline objects from coordinates</p>
-<p class="idnt2">3.3 Retrieving coordinates from a GPS data file</p>
-<p class="idnt2">3.4 Final assembly</p>
-<p class="idnt2">3.5 Clearing elements from the map</p>
+<p class="chpt lnk" onclick="openPage(11)">Chapter 11: Manipulating Elements and Geometry</p>
+<p class="idnt1 lnk" onclick="openPage(11,1)">1.	Creating marker elements</p>
+<p class="idnt2 lnk" onclick="openPage(11,1)">1.1 Model diagram analysis and solution development</p>
+<p class="idnt2 lnk" onclick="openPage(11,4)">1.2 Implementing the bus stop tool</p>
+<p class="idnt1 lnk" onclick="openPage(11,7)">2.	Creating line elements</p>
+<p class="idnt2 lnk" onclick="openPage(11,7)">2.1 Object model diagram analysis and solution development</p>
+<p class="idnt2 lnk" onclick="openPage(11,8)">2.2 Implementing the bus route creation tool</p>
+<p class="idnt1 lnk" onclick="openPage(11,9)">3.	Displaying GPS data as line elements</p>
+<p class="idnt2 lnk" onclick="openPage(11,10)">3.1 Creating an add-in dockable window</p>
+<p class="idnt2 lnk" onclick="openPage(11,12)">3.2 Creating polyline objects from coordinates</p>
+<p class="idnt2 lnk" onclick="openPage(11,15)">3.3 Retrieving coordinates from a GPS data file</p>
+<p class="idnt2 lnk" onclick="openPage(11,16)">3.4 Final assembly</p>
+<p class="idnt2 lnk" onclick="openPage(11,18)">3.5 Clearing elements from the map</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(12)">Chapter 12: Selecting Features</p>
-<p class="idnt1">1.	Working with multiple data frames (maps)</p>
-<p class="idnt2">1.1 Setting a name to the focus map</p>
-<p class="idnt2">1.2 Creating new map objects in a map document</p>
-<p class="idnt2">1.3 Accessing and activating a map</p>
-<p class="idnt1">2.	Definition query</p>
-<p class="idnt1">3.	Selecting features</p>
-<p class="idnt1">4.	Selection sets and cursors</p>
-<p class="idnt2">4.1 SelectionSet</p>
-<p class="idnt2">4.2 Cursor</p>
-<p class="idnt1">5.	Feature cursors and features</p>
+<p class="chpt lnk" onclick="openPage(12)">Chapter 12: Selecting Features</p>
+<p class="idnt1 lnk" onclick="openPage(12,1)">1. Working with multiple data frames (maps)</p>
+<p class="idnt2 lnk" onclick="openPage(12,3)">1.1 Setting a name to the focus map</p>
+<p class="idnt2 lnk" onclick="openPage(12,3)">1.2 Creating new map objects in a map document</p>
+<p class="idnt2 lnk" onclick="openPage(12,4)">1.3 Accessing and activating a map</p>
+<p class="idnt1 lnk" onclick="openPage(12,4)">2. Definition query</p>
+<p class="idnt1 lnk" onclick="openPage(12,8)">3. Selecting features</p>
+<p class="idnt1 lnk" onclick="openPage(12,11)">4. Selection sets and cursors</p>
+<p class="idnt2 lnk" onclick="openPage(12,12)">4.1 SelectionSet</p>
+<p class="idnt2 lnk" onclick="openPage(12,14)">4.2 Cursor</p>
+<p class="idnt1 lnk" onclick="openPage(12,16)">5. Feature cursors and features</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(13)">Chapter 13: Manipulating Feature Data</p>
-<p class="idnt1">1.	Accessing attribute values</p>
-<p class="idnt2">1.1 SpatialFilter</p>
-<p class="idnt2">1.2 Fields and Value</p>
-<p class="idnt2">1.3 Creating your own identify tool</p>
-<p class="idnt1">2.	Editing attribute values</p>
-<p class="idnt2">2.1 Problem analysis</p>
-<p class="idnt2">2.2 Implementation</p>
-<p class="idnt1">3.	Adding new features into feature classes</p>
-<p class="idnt2">3.1 Manipulating a geodatabase</p>
-<p class="idnt2">3.2 Adding new features into a feature class</p>
-<p class="idnt2">3.3 Final assembly</p>
+<p class="chpt lnk" onclick="openPage(13)">Chapter 13: Manipulating Feature Data</p>
+<p class="idnt1 lnk" onclick="openPage(13,2)">1. Accessing attribute values</p>
+<p class="idnt2 lnk" onclick="openPage(13,2)">1.1 SpatialFilter</p>
+<p class="idnt2 lnk" onclick="openPage(13,4)">1.2 Fields and Value</p>
+<p class="idnt2 lnk" onclick="openPage(13,5)">1.3 Creating your own identify tool</p>
+<p class="idnt1 lnk" onclick="openPage(13,9)">2. Editing attribute values</p>
+<p class="idnt2 lnk" onclick="openPage(13,9)">2.1 Problem analysis</p>
+<p class="idnt2 lnk" onclick="openPage(13,10)">2.2 Implementation</p>
+<p class="idnt1 lnk" onclick="openPage(13,11)">3. Adding new features into feature classes</p>
+<p class="idnt2 lnk" onclick="openPage(13,13)">3.1 Manipulating a geodatabase</p>
+<p class="idnt2 lnk" onclick="openPage(13,16)">3.2 Adding new features into a feature class</p>
+<p class="idnt2 lnk" onclick="openPage(13,17)">3.3 Final assembly</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(14)">Chapter 14 Manipulating Raster Data</p>
-<p class="idnt1">1.	Identifying pixel values</p>
-<p class="idnt1">2.	Creating new raster datasets</p>
-<p class="idnt2">2.1 Raster dataset</p>
-<p class="idnt2">2.2 Raster and pixel block</p>
-<p class="idnt2">2.3 Implementation</p>
-<p class="idnt1">3.	Local function - raster reclassification</p>
-<p class="idnt2">3.1 Object model analysis and solution development</p>
-<p class="idnt2">3.2 Implementing</p>
-<p class="idnt1">4.	Focal function - slope raster generation</p>
-<p class="idnt2">4.1 Slope algorithms</p>
-<p class="idnt2">4.2 Handling no data value</p>
-<p class="idnt2">4.3 Getting processing windows from a pixel array</p>
-<p class="idnt2">4.4 Overall procedure</p>
-<p class="idnt2">4.5 Final assembly</p>
+<p class="chpt lnk" onclick="openPage(14)">Chapter 14 Manipulating Raster Data</p>
+<p class="idnt1 lnk" onclick="openPage(14,2)">1. Identifying pixel values</p>
+<p class="idnt1 lnk" onclick="openPage(14,5)">2. Creating new raster datasets</p>
+<p class="idnt2 lnk" onclick="openPage(14,5)">2.1 Raster dataset</p>
+<p class="idnt2 lnk" onclick="openPage(14,7)">2.2 Raster and pixel block</p>
+<p class="idnt2 lnk" onclick="openPage(14,11)">2.3 Implementation</p>
+<p class="idnt1 lnk" onclick="openPage(14,15)">3. Local function - raster reclassification</p>
+<p class="idnt2 lnk" onclick="openPage(14,15)">3.1 Object model analysis and solution development</p>
+<p class="idnt2 lnk" onclick="openPage(14,17)">3.2 Implementing</p>
+<p class="idnt1 lnk" onclick="openPage(14,21)">4. Focal function - slope raster generation</p>
+<p class="idnt2 lnk" onclick="openPage(14,21)">4.1 Slope algorithms</p>
+<p class="idnt2 lnk" onclick="openPage(14,23)">4.2 Handling no data value</p>
+<p class="idnt2 lnk" onclick="openPage(14,24)">4.3 Getting processing windows from a pixel array</p>
+<p class="idnt2 lnk" onclick="openPage(14,26)">4.4 Overall procedure</p>
+<p class="idnt2 lnk" onclick="openPage(14,28)">4.5 Final assembly</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(15)">Chapter 15 Using Geoprocessing Tools</p>
-<p class="idnt1">1.	Geoprocessing and geoprocessing tools</p>
-<p class="idnt1">2.	Toolbox assemblies</p>
-<p class="idnt1">3.	Tool classes</p>
-<p class="idnt1">4.	The Geoprocessor</p>
-<p class="idnt2">4.1 Setting geoprocessing environment</p>
-<p class="idnt2">4.2 Executing geoprocessing tools</p>
-<p class="idnt2">4.3 Monitoring geoprocessing execution status</p>
-<p class="idnt1">5.	Application</p>
-<p class="idnt2">5.1 Analysis Tools</p>
-<p class="idnt3">5.1.1	Select tool</p>
-<p class="idnt3">5.1.2	Clip tool</p>
-<p class="idnt3">5.1.3	Identity tool</p>
-<p class="idnt3">5.1.4	Buffer tool</p>
-<p class="idnt2">5.2 Spatial Analyst Tools</p>
-<p class="idnt3">5.2.1	Slope tool</p>
-<p class="idnt3">5.2.2	Contour tool</p>
-<p class="idnt2">5.3	Data Management Tools</p>
+<p class="chpt lnk" onclick="openPage(15)">Chapter 15 Using Geoprocessing Tools</p>
+<p class="idnt1 lnk" onclick="openPage(15,1)">1. Geoprocessing and geoprocessing tools</p>
+<p class="idnt1 lnk" onclick="openPage(15,3)">2. Toolbox assemblies</p>
+<p class="idnt1 lnk" onclick="openPage(15,4)">3. Tool classes</p>
+<p class="idnt1 lnk" onclick="openPage(15,5)">4. The Geoprocessor</p>
+<p class="idnt2 lnk" onclick="openPage(15,6)">4.1 Setting geoprocessing environment</p>
+<p class="idnt2 lnk" onclick="openPage(15,8)">4.2 Executing geoprocessing tools</p>
+<p class="idnt2 lnk" onclick="openPage(15,9)">4.3 Monitoring geoprocessing execution status</p>
+<p class="idnt1 lnk" onclick="openPage(15,10)">5. Application</p>
+<p class="idnt2 lnk" onclick="openPage(15,10)">5.1 Analysis Tools</p>
+<p class="idnt3 lnk" onclick="openPage(15,10)">5.1.1 Select tool</p>
+<p class="idnt3 lnk" onclick="openPage(15,12)">5.1.2 Clip tool</p>
+<p class="idnt3 lnk" onclick="openPage(15,12)">5.1.3 Identity tool</p>
+<p class="idnt3 lnk" onclick="openPage(15,13)">5.1.4 Buffer tool</p>
+<p class="idnt2 lnk" onclick="openPage(15,21)">5.2 Spatial Analyst Tools</p>
+<p class="idnt3 lnk" onclick="openPage(15,22)">5.2.1 Slope tool</p>
+<p class="idnt3 lnk" onclick="openPage(15,22)">5.2.2 Contour tool</p>
+<p class="idnt2 lnk" onclick="openPage(15,23)">5.3 Data Management Tools</p>
 
 <br>
-<p class="chpt lnk" onclick="opench(16)">Chapter 16 Application Development: Data Driven Pages</p>
-<p class="idnt1">1.	Introduction to data driven pages</p>
-<p class="idnt1">2.	Creating index layer</p>
-<p class="idnt2">2.1 Defining mapping extent</p>
-<p class="idnt2">2.2 Creating a blank index feature class</p>
-<p class="idnt2">2.3 Creating tile features</p>
-<p class="idnt2">2.4 Editing tile features</p>
-<p class="idnt2">2.5 Generating necessary fields: page names, page number</p>
-<p class="idnt2">2.6 Generating tile neighbors</p>
-<p class="idnt2">2.7 Setting up data frames and layers</p>
-<p class="idnt1">3.	Page layout design</p>
-<p class="idnt2">3.1 Adding map elements</p>
-<p class="idnt2">3.2 Adding map surrounds</p>
-<p class="idnt1">4.	Enabling data driven pages</p>
+<p class="chpt lnk" onclick="openPage(16)">Chapter 16 Application: Data Driven Pages</p>
+<p class="idnt1 lnk" onclick="openPage(16,1)">1. Introduction</p>
+<p class="idnt1 lnk" onclick="openPage(16,3)">2. Data Driven Pages Add-in Project</p>
+<p class="idnt2 lnk" onclick="openPage(16,3)">2.1 Starting a new ArcMap add-in project</p>
+<p class="idnt2 lnk" onclick="openPage(16,5)">2.2 Launching the dockable window</p>
+<p class="idnt2 lnk" onclick="openPage(16,5)">2.3 Showing build-in Data Driven Pages toolbar</p>
+<p class="idnt1 lnk" onclick="openPage(16,6)">3. Creating An Extension</p>
+<p class="idnt1 lnk" onclick="openPage(16,8)">4. Creating Mapping Extent and Tiles</p>
+<p class="idnt1 lnk" onclick="openPage(16,14)">5. Updating Mapping Extent and Tiles</p>
+<p class="idnt2 lnk" onclick="openPage(16,14)">5.1 Editing extent coordinates</p>
+<p class="idnt2 lnk" onclick="openPage(16,16)">5.2 Resizing the geographic extent element</p>
+<p class="idnt1 lnk" onclick="openPage(16,19)">6. Creating a new grid index feature class</p>
+<p class="idnt2 lnk" onclick="openPage(16,19)">6.1 Using GxDialog</p>
+<p class="idnt2 lnk" onclick="openPage(16,20)">6.2 Saving tile features in feature classes</p>
+<p class="idnt1 lnk" onclick="openPage(16,26)">7. Setting up Data Driven Pages</p>
 
 </div>
 

@@ -24,19 +24,19 @@
 
     #controls {
       margin-bottom: 15px;
+      margin-left: -120px;
     }
 
     input {
-      padding: 5px;
-      font-size: 16px;
-      width: 40px;
+      padding: 2px;
+      font-size: 14px;
+      width: 30px;
       text-align: center;
     }
 
     button {
-      padding: 6px 10px;
+      padding: 2px 6px;
       font-size: 14px;
-      margin-left: 5px;
       cursor: pointer;
     }
 
@@ -57,7 +57,21 @@
     window.onload = main;
     
     function main() {
-      url = "https://gismanray.github.io/book/pdf/Chapter01.pdf";
+		let params = new URLSearchParams(document.location.search);
+		let chpt = params.get("chpt");
+		if (chpt == null) chpt = 0;
+		if (chpt == 0) {
+			document.getElementById('lbl').innerText = "Introduction - Page";
+		} else {
+			document.getElementById('lbl').innerText = "Chapter " + chpt + " - Page";
+		}
+		
+		pageNum = params.get("page");
+		if (pageNum == null) pageNum = 1;
+		
+		document.getElementById('pnum').value = pageNum;
+
+      url = "https://gismanray.github.io/book/pdf/Chapter" + ("0"+chpt).slice(-2) + ".pdf";
       canvas = document.getElementById("pdfCanvas");
       ctx = canvas.getContext("2d");
       
@@ -123,10 +137,12 @@
   </script>
 </head>
 <body>
-  
+	  
   <div id="controls">
-    <button id="btnL" title="Previous page">&lt;</button>
-    <input type="text" id="pnum" value="1"><button id="btnR" title="Next page">&gt;</button>
+	<span id="lbl"></span>&nbsp;
+	<button id="btnL" title="Previous page">&lt;</button>
+	<input type="text" id="pnum" value="1">
+	<button id="btnR" title="Next page">&gt;</button>
   </div>
   
   <canvas id="pdfCanvas"></canvas>
