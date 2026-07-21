@@ -94,13 +94,17 @@
       } 
 	  if (pageNum == 1) {
 		document.getElementById('btnL').src = "images/btn-l2.png";
+		document.getElementById('btnL').title = "It's the beginning";
 	  } else {
 		document.getElementById('btnL').src = "images/btn-l1.png";
+		document.getElementById('btnL').title = "Previous page";
 	  }
 	  if (pageNum == pdfDoc.numPages) {
 		document.getElementById('btnR').src = "images/btn-r2.png";
+		document.getElementById('btnR').title = "It's the last page";
 	  } else {
 		document.getElementById('btnR').src = "images/btn-r1.png";
+		document.getElementById('btnR').title = "Next page";
 	  }
 
       pdfDoc.getPage(pageNum).then(function(page) {
