@@ -92,6 +92,16 @@
          alert("Invalid page number");
          return;
       } 
+	  if (pageNum == 1) {
+		document.getElementById('btnL').src = "images/btn-l2.png";
+	  } else {
+		document.getElementById('btnL').src = "images/btn-l1.png";
+	  }
+	  if (nageNum == pdfDoc.numPages) {
+		document.getElementById('btnR').src = "images/btn-r2.png";
+	  } else {
+		document.getElementById('btnR').src = "images/btn-r1.png";
+	  }
 
       pdfDoc.getPage(pageNum).then(function(page) {
         const scale = 1.40;
