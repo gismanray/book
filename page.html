@@ -113,7 +113,7 @@
 		}
 		document.getElementById('pnum').value = pageNum;
 
-		pdfDoc.getPage(1).then(function(page) {
+		pdfDoc.getPage(parseInt(pageNum)).then(function(page) {
 			const scale = 1.40;
 			const viewport = page.getViewport({ scale: scale });
 
