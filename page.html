@@ -53,6 +53,10 @@
 		canvas = document.getElementById("pdfCanvas");
 		ctx = canvas.getContext("2d");
 
+		document.getElementById('btnL').addEventListener("click", prevPage);
+		document.getElementById('btnR').addEventListener("click", nextPage);
+		document.getElementById('pnum').addEventListener("keydown", gotoPage);
+
 		let params = new URLSearchParams(document.location.search);
 		chpt = params.get("chpt");
 		if (chpt == null) {
@@ -83,12 +87,7 @@
 		pdfjsLib.getDocument(url).promise.then(function(pdf) {
 			pdfDoc = pdf;
 			renderPage(); // Render initial page
-			alert("render initial page");
 		});
-
-		document.getElementById('btnL').addEventListener("click", prevPage);
-		document.getElementById('btnR').addEventListener("click", nextPage);
-		document.getElementById('pnum').addEventListener("keydown", gotoPage);
 	}
 
 	function renderPage() {
