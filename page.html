@@ -86,11 +86,11 @@
 		url = "https://gismanray.github.io/book/pdf/Chapter" + ("0"+chpt).slice(-2) + ".pdf";
 		pdfjsLib.getDocument(url).promise.then(function(pdf) {
 			pdfDoc = pdf;
-			renderPage(pdf); // Render initial page
+			renderPage(); // Render initial page
 		});
 	}
 
-	function renderPage(pdf) {
+	function renderPage() {
 		if (pageNum == 1 && chpt == 0) {
 			document.getElementById('btnL').src = "images/btn-l2.png";
 			document.getElementById('btnL').title = "First page";
@@ -113,7 +113,7 @@
 		}
 		document.getElementById('pnum').value = pageNum;
 		
-		pdf.getPage(pageNum).then(function(page) {
+		pdfDoc.getPage(pageNum).then(function(page) {
 			const scale = 1.40;
 			const viewport = page.getViewport({ scale: scale });
 
@@ -124,7 +124,7 @@
 				canvasContext: ctx,
 				viewport: viewport
 			};
-
+console.log("page: " + page);
 			page.render(renderContext); alert("page rendered");
 		});
 	}
@@ -134,7 +134,7 @@
 			pageNum--;
 			setCookie("page", pageNum, 7);
 			//document.getElementById('pnum').value = pageNum;
-			renderPage(pdfDoc);
+			renderPage();
 		} else {
 			if (pageNum == 1) {
 				if (chpt > 0) {
@@ -153,7 +153,7 @@
 						pageNum = pdfDoc.numPages;
 						setCookie("page", pageNum, 7);
 						//document.getElementById('pnum').value = pageNum;
-						renderPage(pdf); // Render initial page
+						renderPage(); // Render initial page
 					});
 					
 				}
@@ -166,7 +166,7 @@
 			pageNum++;
 			setCookie("page", pageNum, 7);
 			//document.getElementById('pnum').value = pageNum;
-			renderPage(pdfDoc);
+			renderPage();
 		} else {
 			if (pageNum == pdfDoc.numPages) {
 				if (chpt < 16) {
@@ -181,7 +181,7 @@
 					url = "https://gismanray.github.io/book/pdf/Chapter" + ("0"+chpt).slice(-2) + ".pdf";
 					pdfjsLib.getDocument(url).promise.then(function(pdf){
 						pdfDoc = pdf;
-						renderPage(pdf);
+						renderPage();
 					});
 					
 				}
@@ -201,7 +201,7 @@
 				alert("Nnumber exceeds range of the chapter.");
 			} else {
 				pageNum = parseInt(snum);
-				renderPage(pdfDoc);
+				renderPage();
 			}
 		}
 	}
