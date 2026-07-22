@@ -1,65 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>PDF Page Viewer</title>
+<meta charset="UTF-8">
+<title>PDF Page Viewer</title>
 
-  <!-- PDF.js CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<!-- PDF.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0;
-      padding: 20px;
-    }
+<style>
+	body {
+		font-family: Arial, sans-serif;
+		background: #f4f4f4;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 0;
+		padding: 20px;
+	}
 
-    h1 {
-      margin-bottom: 10px;
-    }
+	h1 { margin-bottom: 10px; }
 
-    #controls {
-      margin-bottom: 15px;
-      margin-left: -120px;
-    }
+	#controls {
+		margin-bottom: 15px;
+		margin-left: -120px;
+	}
 
-    input {
-      padding: 2px;
-      font-size: 14px;
-      width: 30px;
-      text-align: center;
-    }
+	input {
+		padding: 2px;
+		font-size: 14px;
+		width: 30px;
+		text-align: center;
+	}
 
-    button {
-      padding: 2px 6px;
-      font-size: 14px;
-      cursor: pointer;
-    }
+	canvas {
+		border: 1px solid #ccc;
+		background: white;
+		box-shadow: 0 0 10px rgba(0,0,0,0.1);
+	}
+</style>
 
-    canvas {
-      border: 1px solid #ccc;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-  </style>
+<script>
+	var url = null;
+	var pdfDoc = null;
+	var canvas = null;
+	var ctx = null;
+	var chpt = 0;
+	var pageNum = 1;
 
-  <script>
-    var url = null;
-    var pdfDoc = null;
-    var canvas = null;
-    var ctx = null;
-    var pageNum = 1;
-
-    window.onload = main;
+	window.onload = main;
     
-    function main() {
+	function main() {
 		let params = new URLSearchParams(document.location.search);
-		let chpt = params.get("chpt");
-		if (chpt == null) chpt = 0;
+		chpt = params.get("chpt");
+		if (chpt == null) {
+			chpt = getCookie("chpt");
+			if (chpt == null) {
+				chpt = 0;
+			}
+		}
+		setCookie("chpt", chpt, 7);
 		if (chpt == 0) {
 			document.getElementById('lbl').innerText = "Introduction - Page";
 		} else {
@@ -67,99 +66,184 @@
 		}
 		
 		pageNum = params.get("page");
-		if (pageNum == null) pageNum = 1;
-		
+		if (pageNum == null) {
+			pageNum = getCookie("page");
+			if (pageNum == null) {
+				pageNum = 1;
+			}
+		}
+		setCookie("page", pageNum, 7);
 		document.getElementById('pnum').value = pageNum;
 
-      url = "https://gismanray.github.io/book/pdf/Chapter" + ("0"+chpt).slice(-2) + ".pdf";
-      canvas = document.getElementById("pdfCanvas");
-      ctx = canvas.getContext("2d");
+		canvas = document.getElementById("pdfCanvas");
+		ctx = canvas.getContext("2d");
       
-      // Load PDF
-      pdfjsLib.getDocument(url).promise.then(function(pdf) {
-        pdfDoc = pdf;
-        renderPage(); // Render initial page
-      });
+		// Load PDF
+		url = "https://gismanray.github.io/book/pdf/Chapter" + ("0"+chpt).slice(-2) + ".pdf";
+		pdfjsLib.getDocument(url).promise.then(function(pdf) {
+			pdfDoc = pdf;
+			renderPage(); // Render initial page
+		});
 
-      document.getElementById('btnL').addEventListener("click", prevPage);
-      document.getElementById('btnR').addEventListener("click", nextPage);
-      document.getElementById('pnum').addEventListener("keydown", gotoPage);
-    }
+		document.getElementById('btnL').addEventListener("click", prevPage);
+		document.getElementById('btnR').addEventListener("click", nextPage);
+		document.getElementById('pnum').addEventListener("keydown", gotoPage);
+	}
 
-    function renderPage() {
-      pageNum = parseInt(document.getElementById("pnum").value);
-      if (!pdfDoc || pageNum < 1 || pageNum > pdfDoc.numPages) {
-         alert("Invalid page number");
-         return;
-      } 
-	  if (pageNum == 1) {
-		document.getElementById('btnL').src = "images/btn-l2.png";
-		document.getElementById('btnL').title = "It's the first page";
-	  } else {
-		document.getElementById('btnL').src = "images/btn-l1.png";
-		document.getElementById('btnL').title = "Previous page";
-	  }
-	  if (pageNum == pdfDoc.numPages) {
-		document.getElementById('btnR').src = "images/btn-r2.png";
-		document.getElementById('btnR').title = "Last page arrived";
-	  } else {
-		document.getElementById('btnR').src = "images/btn-r1.png";
-		document.getElementById('btnR').title = "Next page";
-	  }
+	function renderPage() {
+		if (pageNum == 1 && chpt == 0) {
+			document.getElementById('btnL').src = "images/btn-l2.png";
+			document.getElementById('btnL').title = "First page";
+		} else {
+			document.getElementById('btnL').src = "images/btn-l1.png";
+			document.getElementById('btnL').title = "Previous page";
+		}
+		if (pageNum == pdfDoc.numPages && chpt == 16) {
+			document.getElementById('btnR').src = "images/btn-r2.png";
+			document.getElementById('btnR').title = "Last page arrived";
+		} else {
+			document.getElementById('btnR').src = "images/btn-r1.png";
+			document.getElementById('btnR').title = "Next page";
+		}
 
-      pdfDoc.getPage(pageNum).then(function(page) {
-        const scale = 1.40;
-        const viewport = page.getViewport({ scale: scale });
+		if (chpt == 0) {
+			document.getElementById('lbl').innerText = "Introduction - Page";
+		} else {
+			document.getElementById('lbl').innerText = "Chapter " + chpt + " - Page";
+		}
+		document.getElementById('pnum').value = pageNum;
+	
+		pdfDoc.getPage(pageNum).then(function(page) {
+			const scale = 1.40;
+			const viewport = page.getViewport({ scale: scale });
 
-        canvas.width = viewport.width;
-        canvas.height = viewport.height;
+			canvas.width = viewport.width;
+			canvas.height = viewport.height;
 
-        const renderContext = {
-          canvasContext: ctx,
-          viewport: viewport
-        };
+			const renderContext = {
+				canvasContext: ctx,
+				viewport: viewport
+			};
 
-        page.render(renderContext);
-      });
-    }
+			page.render(renderContext);
+		});
+	}
 
-    function prevPage() {
-      if (pageNum > 1) {
-        pageNum--;
-        document.getElementById('pnum').value = pageNum;
-        renderPage();
-      }
-    }
+	function prevPage() {
+		if (pageNum > 1) {
+			pageNum--;
+			setCookie("page", pageNum, 7);
+			//document.getElementById('pnum').value = pageNum;
+			renderPage();
+		} else {
+			if (pageNum == 1) {
+				if (chpt > 0) {
+					chpt--;
+					setCookie("chpt", chpt, 7);
+
+					//if (chpt == 0) {
+					//	document.getElementById('lbl').innerText = "Introduction - Page";
+					//} else {
+					//	document.getElementById('lbl').innerText = "Chapter " + chpt + " - Page";
+					//}
+		
+					url = "https://gismanray.github.io/book/pdf/Chapter" + ("0"+chpt).slice(-2) + ".pdf";
+					pdfjsLib.getDocument(url).promise.then(function(pdf){
+						pdfDoc = pdf;
+						pageNum = pdfDoc.numPages;
+						setCookie("page", pageNum, 7);
+						//document.getElementById('pnum').value = pageNum;
+						renderPage(); // Render initial page
+					});
+					
+				}
+			}
+		}
+	}
     
-    function nextPage() {
-      if (pageNum < pdfDoc.numPages) {
-        pageNum++;
-        document.getElementById('pnum').value = pageNum;
-        renderPage();
-      }
-    }
-    
-    function gotoPage(e) {
-      if (e.key != 'Enter') return;
-      const snum = document.getElementById('pnum').value;
-      if (isNaN(parseInt(snum))) {
-        alert("Invalid page number");
-        return;
-      }
-      if (parseInt(snum) != pageNum) renderPage();
-    }
-  </script>
+	function nextPage() {
+		if (pageNum < pdfDoc.numPages) {
+			pageNum++;
+			setCookie("page", pageNum, 7);
+			//document.getElementById('pnum').value = pageNum;
+			renderPage();
+		} else {
+			if (pageNum == pdfDoc.numPages) {
+				if (chpt < 16) {
+					chpt++;
+					setCookie("chpt", chpt, 7);
+					pageNum = 1;
+					setCookie("page", pageNum, 7);
+
+					//document.getElementById('lbl').innerText = "Chapter " + chpt + " - Page";
+					//document.getElementById('pnum').value = pageNum;
+		
+					url = "https://gismanray.github.io/book/pdf/Chapter" + ("0"+chpt).slice(-2) + ".pdf";
+					pdfjsLib.getDocument(url).promise.then(function(pdf){
+						pdfDoc = pdf;
+						renderPage();
+					});
+					
+				}
+			}
+		}
+	}
+
+	function gotoPage(e) {
+		if (e.key != 'Enter') return;
+		const snum = document.getElementById('pnum').value;
+		if (isNaN(parseInt(snum))) {
+			alert("Invalid page number");
+			return;
+		}
+		if (parseInt(snum) != pageNum) {
+			if (!pdfDoc || pageNum < 1 || parseInt(snum) > pdfDoc.numPages) {
+				alert("Nnumber exceeds range of the chapter.");
+			} else {
+				pageNum = parseInt(snum);
+				renderPage();
+			}
+		}
+	}
+
+	function setCookie(name, value, days) {
+		let expires = "";
+
+		if (days) {
+			var date = new Date();
+			date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+			expires = "; expires=" + date.toGMTString();
+		} else {
+			expires = "";
+		}
+		document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + expires + "; path=/";
+	}
+
+	function getCookie(name) {
+		var nameEQ = encodeURIComponent(name) + "=";
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+			if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
+		}
+		return null;
+	}
+
+	function eraseCookie(name) {
+		setCookie(name, "", -1);
+	}
+
+</script>
 </head>
 <body oncontextmenu="return flase;">
 	  
-  <div id="controls">
-	<span id="lbl"></span>&nbsp;
-	<!--<button id="btnL" title="Previous page">&lt;</button>-->
-	<img id="btnL" src="images/btn-l1.png" title="Previous page" style="position:relative; width:28px; top:10px;">
-	<input type="text" id="pnum" value="1">
-	<img id="btnR" src="images/btn-r1.png" title="Next page" style="position:relative; width:28px; top:10px;">
-	<!--<button id="btnR" title="Next page">&gt;</button>-->
-  </div>
+	<div id="controls">
+		<span id="lbl"></span>&nbsp;
+		<img id="btnL" src="images/btn-l1.png" title="Previous page" style="position:relative; width:28px; top:10px;">
+		<input type="text" id="pnum" value="1">
+		<img id="btnR" src="images/btn-r1.png" title="Next page" style="position:relative; width:28px; top:10px;">
+	</div>
   
   <canvas id="pdfCanvas"></canvas>
 
