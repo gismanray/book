@@ -84,6 +84,7 @@
       
 		// Load PDF
 		url = "https://gismanray.github.io/book/pdf/Chapter" + ("0"+chpt).slice(-2) + ".pdf";
+		alert("url=" + url);
 		pdfjsLib.getDocument(url).promise.then(function(pdf) {
 			pdfDoc = pdf;
 			renderPage(); // Render initial page
@@ -112,7 +113,7 @@
 			document.getElementById('lbl').innerText = "Chapter " + chpt + " - Page";
 		}
 		document.getElementById('pnum').value = pageNum;
-
+alert("chapter " + chpt + ", page " + pageNum);
 		pdfDoc.getPage(pageNum).then(function(page) {
 			const scale = 1.40;
 			const viewport = page.getViewport({ scale: scale });
