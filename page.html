@@ -50,6 +50,9 @@
 	window.onload = main;
     
 	function main() {
+		canvas = document.getElementById("pdfCanvas");
+		ctx = canvas.getContext("2d");
+
 		let params = new URLSearchParams(document.location.search);
 		chpt = params.get("chpt");
 		if (chpt == null) {
@@ -74,15 +77,13 @@
 		}
 		setCookie("page", pageNum, 7);
 		document.getElementById('pnum').value = pageNum;
-
-		canvas = document.getElementById("pdfCanvas");
-		ctx = canvas.getContext("2d");
       
 		// Load PDF
 		url = "https://gismanray.github.io/book/pdf/Chapter" + ("0"+chpt).slice(-2) + ".pdf";
 		pdfjsLib.getDocument(url).promise.then(function(pdf) {
 			pdfDoc = pdf;
 			renderPage(); // Render initial page
+			alert("render initial page");
 		});
 
 		document.getElementById('btnL').addEventListener("click", prevPage);
