@@ -20,9 +20,23 @@
 
 	h1 { margin-bottom: 10px; }
 
-	#controls {
-		margin-bottom: 15px;
-		margin-left: -120px;
+	#header {
+		position: relative;
+		width: 856px; height:36px;
+		margin-bottom: 10px;
+		border: 0px solid red;
+	}
+	#chlbl {
+		position: absolute;
+		left:5px; top:10px;
+	}
+	.nav {
+		position: absolute;
+		width: 120px;
+		height:30px;
+		top: 2px;
+		right: 5px;
+		border: 0px green solid;
 	}
 
 	input {
@@ -41,12 +55,13 @@
 <script src="pages.js"></script>
 </head>
 <body oncontextmenu="return flase;">
-	  
-	<div id="controls">
-		<span id="lbl"></span>&nbsp;
-		<img id="btnL" src="images/btn-l1.png" title="Previous page" style="position:relative; width:28px; top:10px;">
-		<input type="text" id="pnum" value="1">
-		<img id="btnR" src="images/btn-r1.png" title="Next page" style="position:relative; width:28px; top:10px;">
+	<div id="header">
+		<span id="chlbl"></span>
+		<div class="nav">
+			<img id="btnR" src="images/btn-r1.png" title="Next page" style="width:28px; display: inline-block; float:right;">
+			<input type="text" id="pnum" value="1" style="display:inline-block; float:right; width:32px; height:15px; margin-top:3px; margin-left:5px; margin-right:5px;">
+			<img id="btnL" src="images/btn-l1.png" title="Previous page" style="width:28px; display: inline-block; float:right;">
+		</div>
 	</div>
   
   <canvas id="pdfCanvas"></canvas>

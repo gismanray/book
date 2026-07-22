@@ -52,23 +52,23 @@ function main() {
 function renderPage() {
 	if (chapPn == 1 && chpt == 0) {
 		document.getElementById('btnL').src = "images/btn-l2.png";
-		document.getElementById('btnL').title = "First page";
+		document.getElementById('btnL').title = "Book beginning";
 	} else {
 		document.getElementById('btnL').src = "images/btn-l1.png";
 		document.getElementById('btnL').title = "Previous page";
 	}
 	if (chapPn == pdfDoc.numPages && chpt == 16) {
 		document.getElementById('btnR').src = "images/btn-r2.png";
-		document.getElementById('btnR').title = "Last page arrived";
+		document.getElementById('btnR').title = "Book end arrived";
 	} else {
 		document.getElementById('btnR').src = "images/btn-r1.png";
 		document.getElementById('btnR').title = "Next page";
 	}
 
 	if (chpt == 0) {
-		document.getElementById('lbl').innerText = "Introduction - Page";
+		document.getElementById('chlbl').innerText = "Introduction";
 		} else {
-			document.getElementById('lbl').innerText = "Chapter " + chpt + " - Page";
+			document.getElementById('chlbl').innerText = "Chapter " + chpt;
 		}
 		document.getElementById('pnum').value = bookPn;
 
