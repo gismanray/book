@@ -113,7 +113,6 @@
 		}
 		document.getElementById('pnum').value = pageNum;
 
-		console.log("pdfDoc: " + pdfDoc);
 		pdfDoc.getPage(pageNum).then(function(page) {
 			const scale = 1.40;
 			const viewport = page.getViewport({ scale: scale });
@@ -126,7 +125,7 @@
 				viewport: viewport
 			};
 
-			page.render(renderContext);
+			page.render(renderContext); alert("page rendered");
 		});
 	}
 
