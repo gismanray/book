@@ -112,7 +112,8 @@
 			document.getElementById('lbl').innerText = "Chapter " + chpt + " - Page";
 		}
 		document.getElementById('pnum').value = pageNum;
-	
+
+		console.log("pdfDoc", pdfDoc);
 		pdfDoc.getPage(pageNum).then(function(page) {
 			const scale = 1.40;
 			const viewport = page.getViewport({ scale: scale });
