@@ -113,9 +113,7 @@
 		}
 		document.getElementById('pnum').value = pageNum;
 
-		alert("pdfDoc: " + pdfDoc);
-		alert("ready to render page");
-		pdfDoc.getPage(pageNum).then(function(page) {
+		pdfDoc.getPage(1).then(function(page) {
 			const scale = 1.40;
 			const viewport = page.getViewport({ scale: scale });
 
@@ -127,7 +125,7 @@
 				viewport: viewport
 			};
 
-			page.render(renderContext); alert("page rendered");
+			page.render(renderContext);
 		});
 	}
 
