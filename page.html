@@ -133,7 +133,6 @@
 		if (pageNum > 1) {
 			pageNum--;
 			setCookie("page", pageNum, 7);
-			//document.getElementById('pnum').value = pageNum;
 			renderPage();
 		} else {
 			if (pageNum == 1) {
@@ -141,21 +140,13 @@
 					chpt--;
 					setCookie("chpt", chpt, 7);
 
-					//if (chpt == 0) {
-					//	document.getElementById('lbl').innerText = "Introduction - Page";
-					//} else {
-					//	document.getElementById('lbl').innerText = "Chapter " + chpt + " - Page";
-					//}
-		
 					url = "https://gismanray.github.io/book/pdf/Chapter" + ("0"+chpt).slice(-2) + ".pdf";
 					pdfjsLib.getDocument(url).promise.then(function(pdf){
 						pdfDoc = pdf;
 						pageNum = pdfDoc.numPages;
 						setCookie("page", pageNum, 7);
-						//document.getElementById('pnum').value = pageNum;
 						renderPage(); // Render initial page
-					});
-					
+					});					
 				}
 			}
 		}
@@ -165,7 +156,6 @@
 		if (pageNum < pdfDoc.numPages) {
 			pageNum++;
 			setCookie("page", pageNum, 7);
-			//document.getElementById('pnum').value = pageNum;
 			renderPage();
 		} else {
 			if (pageNum == pdfDoc.numPages) {
@@ -174,9 +164,6 @@
 					setCookie("chpt", chpt, 7);
 					pageNum = 1;
 					setCookie("page", pageNum, 7);
-
-					//document.getElementById('lbl').innerText = "Chapter " + chpt + " - Page";
-					//document.getElementById('pnum').value = pageNum;
 		
 					url = "https://gismanray.github.io/book/pdf/Chapter" + ("0"+chpt).slice(-2) + ".pdf";
 					pdfjsLib.getDocument(url).promise.then(function(pdf){
