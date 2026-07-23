@@ -1,4 +1,4 @@
-var pages = [3, 25, 23, 25, 23, 24, 21, 22, 20, 17, 22, 21, 23, 24, 33, 30, 34];
+var pages = [3, 25, 23, 25, 23, 24, 21, 22, 20, 17, 22, 21, 23, 24, 33, 30, 34]; // chapter pages
 var url = null;
 var pdfDoc = null;
 var canvas = null;
@@ -16,6 +16,9 @@ function main() {
 	document.getElementById('btnL').addEventListener("click", prevPage);
 	document.getElementById('btnR').addEventListener("click", nextPage);
 	document.getElementById('pnum').addEventListener("keydown", gotoPage);
+	document.addEventListener('contextmenu', (e) => {
+		e.preventDefault();
+	});
 
 	let params = new URLSearchParams(document.location.search);
 	chpt = params.get("chpt");			// first, try url parameters

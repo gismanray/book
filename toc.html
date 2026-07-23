@@ -17,6 +17,9 @@ p {font-family:arial; font-size:10pt; margin:3pt; text-align:left;}
 	
 	function main() {
 		resizewin();
+		document.addEventListener('contextmenu', (e) => {
+			e.preventDefault();
+		});
 	}
 	
 	function resizewin() {
