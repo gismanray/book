@@ -163,7 +163,7 @@ function gotoPage(e) {
 function getPageInfo() {
 	let chn = 0, pn = 1;
 	for (let i=0; i<=16; i++) {
-		const chPE = (pages.slice(0, i+1)).reduce((sum, val) => sum + val, 0);	// chapter end page number
+		const chPE = pages.slice(0, i+1).sum();	// chapter end page number
 		const chPS = chPE - pages[i] + 1;		// chapter starting page number
 		//console.log("chPE: " + chPE + "; chPS: " + chPS + "; bookPn: " + bookPn);
 		if (bookPn <= chPE) {
@@ -180,9 +180,13 @@ function getBookPage(ch, pn) {
 	if (ch == 0) {
 		return pn;
 	} else {
-		return (pages.slice(0, ch)).reduce((sum, val) => sum + val, 0) + parseInt(pn);
+		return pages.slice(0, ch).sum() + parseInt(pn);
 	}
 }
+
+Array.prototype.sum = function() {
+	return this.reduce((sum, val) => sum + val, 0);
+};
 
 function setCookie(name, value, days) {
 	let expires = "";
