@@ -6,12 +6,26 @@ var ctx = null;
 var chpt = 0;		// chapter number
 var bookPn = 1;		// book page number
 var chapPn = 1;		// chapter page number
+var frms = null;
+var toc = null;
 
 window.onload = main;
    
 function main() {
 	canvas = document.getElementById("pdfCanvas");
 	ctx = canvas.getContext("2d");
+	frms = window.parent.document.getElementById("frms");
+	toc = window.parent.document.getElementById("toc");
+
+	document.getElementById("slider").addEventListener("click", function() {
+		if (toc.offsetWidth == 0) {
+			frms.cols = "273, *";
+			this.title = "collapse";
+		} else {
+			frms.cols = "0, *";
+			this.title = "expand";
+		}
+	});
 
 	document.getElementById('btnL').addEventListener("click", prevPage);
 	document.getElementById('btnR').addEventListener("click", nextPage);
