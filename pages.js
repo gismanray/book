@@ -20,10 +20,10 @@ function main() {
 	document.getElementById("slider").addEventListener("click", function() {
 		if (toc.offsetWidth == 0) {
 			frms.cols = "472, *";
-			this.title = "collapse";
+			this.title = "Hide contents";
 		} else {
 			frms.cols = "0, *";
-			this.title = "expand";
+			this.title = "Show contents";
 		}
 	});
 
