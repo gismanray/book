@@ -55,6 +55,11 @@
 <script src="pages.js"></script>
 </head>
 <body oncontextmenu="return flase;">
+	<div id="slider" style="position:absolute; left:0px; top:0px; width:13px; height:24px; background-color:#cccccc; border:1px solid gray; border-top-right-radius:3px; border-bottom-right-radius:3px;" title="collapse">
+		<div style="position:absolute; left:2px; top:4px; height:16px; width:2px; border-left:1px solid #eeeeee; border-right:1px solid #888888;"></div>
+		<div style="position:absolute; left:7px; top:4px; height:16px; width:2px; border-left:1px solid #eeeeee; border-right:1px solid #888888;"></div>
+	</div>
+	
 	<div id="header">
 		<span id="chlbl"></span>
 		<div class="nav">
@@ -63,8 +68,7 @@
 			<img id="btnL" src="images/btn-l1.png" title="Previous page" style="width:28px; display: inline-block; float:right;">
 		</div>
 	</div>
-  
-  <canvas id="pdfCanvas"></canvas>
 
+	<canvas id="pdfCanvas"></canvas>
 </body>
 </html>
