@@ -19,7 +19,7 @@ function main() {
 
 	document.getElementById("slider").addEventListener("click", function() {
 		if (toc.offsetWidth == 0) {
-			frms.cols = "273, *";
+			frms.cols = "472, *";
 			this.title = "collapse";
 		} else {
 			frms.cols = "0, *";
