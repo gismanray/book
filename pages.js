@@ -90,11 +90,12 @@ function renderPage() {
 		document.getElementById('pnum').value = bookPn;
 
 		pdfDoc.getPage(parseInt(chapPn)).then(function(page) {
-		const scale = 1.40;
+		const scale = 1.50;
 		const viewport = page.getViewport({ scale: scale });
 
 		canvas.width = viewport.width;
 		canvas.height = viewport.height;
+		canvas.style.width = "800px";
 
 		const renderContext = {
 			canvasContext: ctx,
