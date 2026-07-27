@@ -95,7 +95,7 @@ function renderPage() {
 
 		canvas.width = viewport.width;
 		canvas.height = viewport.height;
-		canvas.style.width = "800px";
+		canvas.style.width = "856px";
 
 		const renderContext = {
 			canvasContext: ctx,
