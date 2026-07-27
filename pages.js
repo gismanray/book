@@ -90,7 +90,7 @@ function renderPage() {
 		document.getElementById('pnum').value = bookPn;
 
 		pdfDoc.getPage(parseInt(chapPn)).then(function(page) {
-		const scale = 1.50;
+		const scale = 1.40;
 		const viewport = page.getViewport({ scale: scale });
 
 		canvas.width = viewport.width;
