@@ -16,7 +16,7 @@ function main() {
 	ctx = canvas.getContext("2d");
 	frms = window.parent.document.getElementById("frms");
 	toc = window.parent.document.getElementById("toc");
-
+/*
 	document.getElementById("slider").addEventListener("click", function() {
 		if (toc.offsetWidth == 0) {
 			frms.cols = "472, *";
@@ -24,6 +24,15 @@ function main() {
 		} else {
 			frms.cols = "0, *";
 			this.title = "Show contents";
+		}
+	}); */
+	document.getElementById("tocx").addEventListener("click", function() {
+		if (this.title == "collapse") {
+			this.src = "images/expand.png";
+			this.title = "expand";
+		} else {
+			this.src = "images/collapse.png";
+			this.title = "collapse";
 		}
 	});
 
