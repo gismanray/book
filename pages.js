@@ -26,7 +26,7 @@ function main() {
 			this.title = "Show contents";
 		}
 	}); */
-	document.getElementById("tocx").addEventListener("click", function() {
+	document.getElementById("xtoc").addEventListener("click", function() {
 		if (this.title == "collapse") {
 			this.src = "images/expand.png";
 			this.title = "expand";
