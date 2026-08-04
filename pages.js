@@ -28,9 +28,11 @@ function main() {
 	}); */
 	document.getElementById("xtoc").addEventListener("click", function() {
 		if (this.title == "collapse") {
+			frms.cols = "0, *";
 			this.src = "images/expand.png";
 			this.title = "expand";
 		} else {
+			frms.cols = "472, *";
 			this.src = "images/collapse.png";
 			this.title = "collapse";
 		}
