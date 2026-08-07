@@ -28,14 +28,14 @@ function main() {
 	}); */
 	
 	document.getElementById("xtoc").addEventListener("click", function() {
-		if (this.title == "collapse") {
+		if (this.title == "Collapse TOC") {
 			frms.cols = "0, *";
 			this.src = "images/expand.png";
-			this.title = "expand";
+			this.title = "Expand TOC";
 		} else {
 			frms.cols = "472, *";
 			this.src = "images/collapse.png";
-			this.title = "collapse";
+			this.title = "Collapse TOC";
 		}
 	});
 
