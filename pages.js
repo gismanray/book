@@ -28,7 +28,7 @@ function main() {
 	}); */
 	
 	document.getElementById("xtoc").addEventListener("click", function() {
-		if (this.title == "Collapse TOC") {
+		if (toc.offsetWidth > 0) {
 			frms.cols = "0, *";
 			this.src = "images/expand.png";
 			this.title = "Expand TOC";
