@@ -16,17 +16,18 @@ function main() {
 	ctx = canvas.getContext("2d");
 	frms = window.parent.document.getElementById("frms");
 	toc = window.parent.document.getElementById("toc");
-	/*
+	
 	document.getElementById("slider").addEventListener("click", function() {
 		if (toc.offsetWidth == 0) {
 			frms.cols = "472, *";
-			this.title = "Hide contents";
+			this.title = "Hide Contents";
 		} else {
 			frms.cols = "0, *";
-			this.title = "Show contents";
+			this.title = "Show Contents";
 		}
-	}); */
+	});
 	
+	/*
 	document.getElementById("xtoc").addEventListener("click", function() {
 		if (toc.offsetWidth > 0) {
 			frms.cols = "0, *";
@@ -37,7 +38,7 @@ function main() {
 			this.src = "images/collapse.png";
 			this.title = "Collapse TOC";
 		}
-	});
+	}); */
 
 	document.getElementById('btnL').addEventListener("click", prevPage);
 	document.getElementById('btnR').addEventListener("click", nextPage);
