@@ -4,29 +4,6 @@
 <meta charset="UTF-8">
 <title>PDF Page Viewer</title>
 <style type="text/css">
-#slider { 
-	position:absolute; 
-	left:0px; top:0px; 
-	width:13px; height:24px; 
-	background-color:#cccccc; 
-	border:1px solid gray; 
-	border-top-right-radius:7px; 
-	border-bottom-right-radius:7px;
-}
-.bar1, .bar2 {
-	position:absolute; 
-	left:2px; top:4px; 
-	height:16px; width:1px; 
-	border-left:1px solid #eeeeee; 
-	border-right:1px solid #888888;
-}
-.bar2 { left:7px; }
-</style>
-
-<!-- PDF.js CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-
-<style>
 	body {
 		font-family: Arial, sans-serif;
 		background: #f4f4f4;
@@ -70,7 +47,28 @@
 		background: white;
 		box-shadow: 0 0 10px rgba(0,0,0,0.1);
 	}
+	
+	#slider { 
+		position:absolute; 
+		left:0px; top:0px; 
+		width:13px; height:24px; 
+		background-color:#cccccc; 
+		border:1px solid gray; 
+		border-top-right-radius:6px; 
+		border-bottom-right-radius:6px;
+	}
+	.bar1, .bar2 {
+		position:absolute; 
+		left:2px; top:4px; 
+		height:16px; width:1px; 
+		border-left:1px solid #eeeeee; 
+		border-right:1px solid #888888;
+	}
+	.bar2 { left:7px; }
 </style>
+	
+<!-- PDF.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="pages.js"></script>
 </head>
 <body oncontextmenu="return flase;">
