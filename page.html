@@ -3,6 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <title>PDF Page Viewer</title>
+<style type="text/css">
+.slider { 
+	position:absolute; 
+	left: 0px; top: 0px; 
+	width:14px; height:28px; 
+	background-color:#e0e0e0; 
+	border:1px solid #bbbbbb; 
+	border-top-right-radius:6px; 
+	border-bottom-right-radius:6px;
+	border-right-color: #a0a0a0;
+	border-bottom-color: #a0a0a0;
+}
+.bar1, .bar2 {
+	position: absolute;
+	left:2px; top:6px;
+	height: 16px; width:1px;
+	border-left: 1px solid #f0f0f0;
+	border-right: 1px solid #aaaaaa;
+}
+.bar2 { left:7px; }
+</style>
 
 <!-- PDF.js CDN -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -61,6 +82,11 @@
 		<div style="position:absolute; left:7px; top:4px; height:16px; width:2px; border-left:1px solid #eeeeee; border-right:1px solid #888888;"></div>
 	</div>-->
 	<img id="xtoc" src="images/collapse.png" style="position:absolute; left:0px; top:0px; height:24px;" title="Collapse TOC">
+	
+	<div class="slider" title="Collapse TOC">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+	</div>
 	
 	<div id="header">
 		<span id="chlbl"></span>
